@@ -10,7 +10,7 @@
   "environment": "server",
   "entrypoints": {
     "server": [
-      "com.kleinercode.fabric.DeathMessages"
+      "com.kleinercode.fabric.deathmessages.DeathMessages"
     ]
   },
   "mixins": [

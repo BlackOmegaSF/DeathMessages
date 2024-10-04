@@ -1,4 +1,4 @@
-package com.kleinercode.fabric;
+package com.kleinercode.fabric.deathmessages;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
 

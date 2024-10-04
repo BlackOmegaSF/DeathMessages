@@ -1,6 +1,6 @@
-package com.kleinercode.fabric.mixin;
+package com.kleinercode.fabric.deathmessages.mixin;
 
-import com.kleinercode.fabric.Utils;
+import com.kleinercode.fabric.deathmessages.Utils;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.entity.LivingEntity;

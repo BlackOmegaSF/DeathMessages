@@ -6,7 +6,7 @@
   "mixins": [],
   "client": [],
   "server": [
-    "ServerPlayerEntityMixin"
+    "com.kleinercode.fabric.deathmessages.mixin.ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
