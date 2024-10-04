@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.kleinercode.fabric.mixin",
+  "package": "com.kleinercode.fabric.deathmessages.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [],
   "server": [
-    "com.kleinercode.fabric.deathmessages.mixin.ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

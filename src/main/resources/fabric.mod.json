@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "death-messages",
+  "id": "deathmessages",
   "version": "${version}",
   "name": "Death Messages",
   "description": "",
@@ -14,7 +14,7 @@
     ]
   },
   "mixins": [
-    "death-messages.mixins.json"
+    "deathmessages.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.2",
