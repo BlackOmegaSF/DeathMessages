@@ -4,26 +4,22 @@
   "version": "${version}",
   "name": "Death Messages",
   "description": "",
-  "authors": [],
-  "contact": {},
-  "license": "All-Rights-Reserved",
-  "icon": "assets/death-messages/icon.png",
+  "authors": [
+    "Kian Leiner"
+  ],
   "environment": "server",
   "entrypoints": {
-    "main": [
+    "server": [
       "com.kleinercode.fabric.DeathMessages"
     ]
   },
   "mixins": [
-    "death-messages.mixins.json",
-    {
-      "config": "death-messages.client.mixins.json",
-      "environment": "client"
-    }
+    "death-messages.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.21.1",
+    "fabric-api": "*",
+    "java": ">=21"
   }
 }
