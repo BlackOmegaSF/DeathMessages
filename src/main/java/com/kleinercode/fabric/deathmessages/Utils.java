@@ -48,8 +48,8 @@ public class Utils {
     }
 
     public static class Constants {
-        public static Text THE_BITCHWHIPPER = Text.of("The Bitchwhipper");
-        public static Text THE_BITCHRIPPER = Text.of("The Bitchripper");
+        public static final Text THE_BITCHWHIPPER = Text.of("The Bitchwhipper");
+        public static final Text THE_BITCHRIPPER = Text.of("The Bitchripper");
     }
 
 }
