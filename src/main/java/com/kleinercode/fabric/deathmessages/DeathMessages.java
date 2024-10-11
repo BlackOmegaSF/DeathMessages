@@ -22,7 +22,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
             player.getServerWorld().playSound(
                     player,
                     player.getBlockPos(),
-                    SoundEvent.of(Identifier.of("custom", "oof")),
+                    SoundEvent.of(Identifier.of("kleinercode", "oof")),
                     SoundCategory.PLAYERS
             );
 
@@ -31,7 +31,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
                 player.getServerWorld().playSound(
                         player,
                         player.getBlockPos(),
-                        SoundEvent.of(Identifier.of("custom", "whip")),
+                        SoundEvent.of(Identifier.of("kleinercode", "whip")),
                         SoundCategory.PLAYERS
                 );
             }
@@ -45,7 +45,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
                 killedEntity.getWorld().playSound(
                         killedEntity,
                         killedEntity.getBlockPos(),
-                        SoundEvent.of(Identifier.of("minecraft", "custom.whip")),
+                        SoundEvent.of(Identifier.of("kleinercode", "whip")),
                         SoundCategory.PLAYERS,
                         1f,
                         1f
