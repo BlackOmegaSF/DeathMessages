@@ -30,7 +30,7 @@ public abstract class ServerPlayerEntityMixin {
 
         ServerPlayerEntity killedPlayer = (ServerPlayerEntity)(Object)this;
         MutableText mutable = Text.empty();
-        ActionResult result = OnPlayerDeathMessageCallback.EVENT.invoker().interact(source, killedPlayer, text.get(), mutable);
+        OnPlayerDeathMessageCallback.EVENT.invoker().interact(source, killedPlayer, text.get(), mutable);
 
         text.set(mutable);
 
