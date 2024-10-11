@@ -1,10 +1,6 @@
 package com.kleinercode.fabric.deathmessages;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.ClickEvent;
