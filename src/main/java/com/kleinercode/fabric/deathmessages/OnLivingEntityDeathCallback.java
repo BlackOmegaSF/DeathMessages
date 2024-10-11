@@ -1,6 +1,5 @@
 package com.kleinercode.fabric.deathmessages;
 
-import com.kleinercode.fabric.deathmessages.mixin.LivingEntityMixin;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.LivingEntity;
