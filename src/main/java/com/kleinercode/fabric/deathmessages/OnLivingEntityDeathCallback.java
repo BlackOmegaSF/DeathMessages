@@ -9,7 +9,7 @@ import net.minecraft.util.ActionResult;
 public interface OnLivingEntityDeathCallback {
 
     /**
-     * Callback when a living entity is killed (except players, they overide this)
+     * Callback when a living entity is killed (except players, they override this)
      * Upon return:
      *  - PASS falls back to further processing and defaults to SUCCESS if no other listeners are registered.
      *  - SUCCESS cancels further processing and continues with death logic
