@@ -21,12 +21,12 @@ public interface OnLivingEntityDeathCallback {
                 for (OnLivingEntityDeathCallback listener : listeners) {
                     ActionResult result = listener.interact(source, killedEntity);
 
-                    if (result != ActionResult.PASS) {
+                    if (result.equals(ActionResult.PASS)) {
                         return result;
                     }
                 }
 
-                return ActionResult.SUCCESS;
+                return ActionResult.PASS;
             });
 
     ActionResult interact(DamageSource source, LivingEntity killedEntity);
