@@ -60,6 +60,8 @@ public class DeathMessages implements DedicatedServerModInitializer {
             if (Utils.checkForBitchwhipper(source, false)) {
                 // Player was bitchwhipped
                 mutable.append(Text.literal( source.getName() + " bitchwhipped " + killedPlayer.getName()));
+            } else {
+                mutable.append(text);
             }
 
             mutable.append(Text.literal(" at "));
