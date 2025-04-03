@@ -76,9 +76,8 @@ public class DeathMessages implements DedicatedServerModInitializer {
 
             mutable.append(mutable2.styled((style) -> {
                 String tpCommand = "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
-                return style.withHoverEvent(
-                                new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to teleport")))
-                        .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, tpCommand));
+                return style.withHoverEvent(new HoverEvent.ShowText(Text.literal("Click to teleport")))
+                        .withClickEvent(new ClickEvent.SuggestCommand(tpCommand));
             }));
 
             return ActionResult.PASS;
