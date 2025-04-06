@@ -8,6 +8,7 @@ import net.minecraft.text.HoverEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -76,7 +77,8 @@ public class DeathMessages implements DedicatedServerModInitializer {
 
             mutable.append(mutable2.styled((style) -> {
                 String tpCommand = "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
-                return style.withHoverEvent(new HoverEvent.ShowText(Text.literal("Click to teleport")))
+                return style.withColor(Colors.BLUE)
+                        .withHoverEvent(new HoverEvent.ShowText(Text.literal("Click to teleport")))
                         .withClickEvent(new ClickEvent.SuggestCommand(tpCommand));
             }));
 
