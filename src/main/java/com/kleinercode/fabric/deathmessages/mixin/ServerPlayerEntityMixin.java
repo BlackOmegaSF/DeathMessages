@@ -24,7 +24,7 @@ public abstract class ServerPlayerEntityMixin {
 
     // Adds custom death message text
 
-    @Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayNetworkHandler;send(Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/PacketCallbacks;)V"))
+    @Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayNetworkHandler;send(Lnet/minecraft/network/packet/Packet;Lio/netty/channel/ChannelFutureListener;)V"))
     public void onDeath(DamageSource source, CallbackInfo info, @Local(ordinal = 0) LocalRef<Text> text) {
 
         ServerPlayerEntity killedPlayer = (ServerPlayerEntity)(Object)this;
