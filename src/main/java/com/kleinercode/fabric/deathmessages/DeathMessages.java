@@ -20,7 +20,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
         // Event handler on player death
         OnPlayerDeathCallback.EVENT.register((source, player) -> {
             // Play oof death sound
-            player.getWorld().playSound(
+            player.getEntityWorld().playSound(
                     player,
                     player.getBlockPos(),
                     SoundEvent.of(Identifier.of("kleinercode", "oof")),
@@ -29,7 +29,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
 
             if (Utils.checkForBitchwhipper(source, true) || Utils.checkForBitchripper(source, false)) {
                 // Bitchwhipping has happened, play sound
-                player.getWorld().playSound(
+                player.getEntityWorld().playSound(
                         player,
                         player.getBlockPos(),
                         SoundEvent.of(Identifier.of("kleinercode", "whip")),
@@ -43,7 +43,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
         OnLivingEntityDeathCallback.EVENT.register(((source, killedEntity) -> {
             if (Utils.checkForBitchripper(source, false)) {
                 // Bitchripping has happened, play sound
-                killedEntity.getWorld().playSound(
+                killedEntity.getEntityWorld().playSound(
                         killedEntity,
                         killedEntity.getBlockPos(),
                         SoundEvent.of(Identifier.of("kleinercode", "whip")),
