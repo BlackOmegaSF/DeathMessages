@@ -1,16 +1,16 @@
 package com.kleinercode.fabric.deathmessages;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Colors;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.CommonColors;
+import net.minecraft.world.InteractionResult;
 
 public class DeathMessages implements DedicatedServerModInitializer {
 
@@ -20,39 +20,39 @@ public class DeathMessages implements DedicatedServerModInitializer {
         // Event handler on player death
         OnPlayerDeathCallback.EVENT.register((source, player) -> {
             // Play oof death sound
-            player.getEntityWorld().playSound(
+            player.level().playSound(
                     player,
-                    player.getBlockPos(),
-                    SoundEvent.of(Identifier.of("kleinercode", "oof")),
-                    SoundCategory.PLAYERS
+                    player.blockPosition(),
+                    SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "oof")),
+                    SoundSource.PLAYERS
             );
 
             if (Utils.checkForBitchwhipper(source, true) || Utils.checkForBitchripper(source, false)) {
                 // Bitchwhipping has happened, play sound
-                player.getEntityWorld().playSound(
+                player.level().playSound(
                         player,
-                        player.getBlockPos(),
-                        SoundEvent.of(Identifier.of("kleinercode", "whip")),
-                        SoundCategory.PLAYERS
+                        player.blockPosition(),
+                        SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "whip")),
+                        SoundSource.PLAYERS
                 );
             }
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         });
 
         // Event handler on LivingEntity death
         OnLivingEntityDeathCallback.EVENT.register(((source, killedEntity) -> {
             if (Utils.checkForBitchripper(source, false)) {
                 // Bitchripping has happened, play sound
-                killedEntity.getEntityWorld().playSound(
+                killedEntity.level().playSound(
                         killedEntity,
-                        killedEntity.getBlockPos(),
-                        SoundEvent.of(Identifier.of("kleinercode", "whip")),
-                        SoundCategory.PLAYERS,
+                        killedEntity.blockPosition(),
+                        SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "whip")),
+                        SoundSource.PLAYERS,
                         1f,
                         1f
                 );
             }
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         }));
 
         // Event handler on player death message death
@@ -60,29 +60,29 @@ public class DeathMessages implements DedicatedServerModInitializer {
 
             if (Utils.checkForBitchwhipper(source, false)) {
                 // Player was bitchwhipped
-                mutable.append(Text.literal( source.getName() + " bitchwhipped " + killedPlayer.getName()));
+                mutable.append(Component.literal( source.getMsgId() + " bitchwhipped " + killedPlayer.getName()));
             } else {
                 mutable.append(text);
             }
 
-            mutable.append(Text.literal(" at "));
-            BlockPos pos = killedPlayer.getBlockPos();
-            MutableText mutable2 = Text.literal("[");
-            mutable2.append(Text.literal(String.valueOf(pos.getX())));
-            mutable2.append(Text.literal(", "));
-            mutable2.append(Text.literal(String.valueOf(pos.getY())));
-            mutable2.append(Text.literal(", "));
-            mutable2.append(Text.literal(String.valueOf(pos.getZ())));
-            mutable2.append(Text.literal("]"));
+            mutable.append(Component.literal(" at "));
+            BlockPos pos = killedPlayer.blockPosition();
+            MutableComponent mutable2 = Component.literal("[");
+            mutable2.append(Component.literal(String.valueOf(pos.getX())));
+            mutable2.append(Component.literal(", "));
+            mutable2.append(Component.literal(String.valueOf(pos.getY())));
+            mutable2.append(Component.literal(", "));
+            mutable2.append(Component.literal(String.valueOf(pos.getZ())));
+            mutable2.append(Component.literal("]"));
 
-            mutable.append(mutable2.styled((style) -> {
+            mutable.append(mutable2.withStyle((style) -> {
                 String tpCommand = "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
-                return style.withColor(Colors.BLUE)
-                        .withHoverEvent(new HoverEvent.ShowText(Text.literal("Click to teleport")))
+                return style.withColor(CommonColors.BLUE)
+                        .withHoverEvent(new HoverEvent.ShowText(Component.literal("Click to teleport")))
                         .withClickEvent(new ClickEvent.SuggestCommand(tpCommand));
             }));
 
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         }));
 
     }

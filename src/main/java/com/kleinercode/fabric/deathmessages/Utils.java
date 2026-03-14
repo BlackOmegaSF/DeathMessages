@@ -1,25 +1,25 @@
 package com.kleinercode.fabric.deathmessages;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-
 import static com.kleinercode.fabric.deathmessages.Utils.Constants.THE_BITCHRIPPER;
 import static com.kleinercode.fabric.deathmessages.Utils.Constants.THE_BITCHWHIPPER;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public class Utils {
 
     public static boolean checkForBitchwhipper(DamageSource source, boolean onlyPlayer) {
-        Entity killer = source.getAttacker();
+        Entity killer = source.getEntity();
         if (!checkIfPlayer(killer) && onlyPlayer) return false;
-        ItemStack weapon = source.getWeaponStack();
+        ItemStack weapon = source.getWeaponItem();
         if (weapon != null) {
-            Text weaponName = weapon.getName();
+            Component weaponName = weapon.getHoverName();
             if (weaponName.contains(THE_BITCHWHIPPER)) return true;
-            for (Text sibling : weaponName.getSiblings()) {
+            for (Component sibling : weaponName.getSiblings()) {
                 return sibling.contains(THE_BITCHWHIPPER);
             }
             return false;
@@ -28,13 +28,13 @@ public class Utils {
     }
 
     public static boolean checkForBitchripper(DamageSource source, boolean onlyPlayer) {
-        Entity killer = source.getAttacker();
+        Entity killer = source.getEntity();
         if (!checkIfPlayer(killer) && onlyPlayer) return false;
-        ItemStack weapon = source.getWeaponStack();
+        ItemStack weapon = source.getWeaponItem();
         if (weapon != null) {
-            Text weaponName = weapon.getName();
+            Component weaponName = weapon.getHoverName();
             if (weaponName.contains(THE_BITCHRIPPER)) return true;
-            for (Text sibling : weaponName.getSiblings()) {
+            for (Component sibling : weaponName.getSiblings()) {
                 return sibling.contains(THE_BITCHRIPPER);
             }
             return false;
@@ -43,13 +43,13 @@ public class Utils {
     }
 
     private static boolean checkIfPlayer(Entity entity) {
-        if (entity instanceof PlayerEntity) return true;
-        return entity instanceof ServerPlayerEntity;
+        if (entity instanceof Player) return true;
+        return entity instanceof ServerPlayer;
     }
 
     public static class Constants {
-        public static final Text THE_BITCHWHIPPER = Text.of("The Bitchwhipper");
-        public static final Text THE_BITCHRIPPER = Text.of("The Bitchripper");
+        public static final Component THE_BITCHWHIPPER = Component.nullToEmpty("The Bitchwhipper");
+        public static final Component THE_BITCHRIPPER = Component.nullToEmpty("The Bitchripper");
     }
 
 }

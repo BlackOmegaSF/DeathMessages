@@ -2,11 +2,11 @@ package com.kleinercode.fabric.deathmessages;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 
 public interface OnPlayerDeathMessageCallback {
 
@@ -22,16 +22,16 @@ public interface OnPlayerDeathMessageCallback {
     Event<OnPlayerDeathMessageCallback> EVENT = EventFactory.createArrayBacked(OnPlayerDeathMessageCallback.class,
             (listeners) -> (source, killedPlayer, text, mutable) -> {
                 for (OnPlayerDeathMessageCallback listener : listeners) {
-                    ActionResult result = listener.interact(source, killedPlayer, text, mutable);
+                    InteractionResult result = listener.interact(source, killedPlayer, text, mutable);
 
-                    if (result != ActionResult.PASS) {
+                    if (result != InteractionResult.PASS) {
                         return result;
                     }
                 }
 
-                return ActionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             });
 
-    ActionResult interact(DamageSource source, ServerPlayerEntity killedPlayer, Text text, MutableText mutable);
+    InteractionResult interact(DamageSource source, ServerPlayer killedPlayer, Component text, MutableComponent mutable);
 
 }
