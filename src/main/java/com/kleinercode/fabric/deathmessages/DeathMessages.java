@@ -21,19 +21,23 @@ public class DeathMessages implements DedicatedServerModInitializer {
         OnPlayerDeathCallback.EVENT.register((source, player) -> {
             // Play oof death sound
             player.level().playSound(
-                    player,
+                    null,
                     player.blockPosition(),
                     SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "oof")),
-                    SoundSource.PLAYERS
+                    SoundSource.PLAYERS,
+                    1f,
+                    1f
             );
 
-            if (Utils.checkForBitchwhipper(source, true) || Utils.checkForBitchripper(source, false)) {
+            if (Utils.checkForBitchwhipper(source, false) || Utils.checkForBitchripper(source, false)) {
                 // Bitchwhipping has happened, play sound
                 player.level().playSound(
-                        player,
+                        null,
                         player.blockPosition(),
                         SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "whip")),
-                        SoundSource.PLAYERS
+                        SoundSource.PLAYERS,
+                        1f,
+                        1f
                 );
             }
             return InteractionResult.PASS;
@@ -44,7 +48,7 @@ public class DeathMessages implements DedicatedServerModInitializer {
             if (Utils.checkForBitchripper(source, false)) {
                 // Bitchripping has happened, play sound
                 killedEntity.level().playSound(
-                        killedEntity,
+                        null,
                         killedEntity.blockPosition(),
                         SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath("kleinercode", "whip")),
                         SoundSource.PLAYERS,
